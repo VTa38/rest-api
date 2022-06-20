@@ -9,9 +9,6 @@ import java.util.List;
 @Service
 public class FileAnalyzer {
     // Класс с основной логикой, который анализирует и преобразует информацию из файла
-
-    private List<NavigationDTO> list = new ArrayList<>();
-
     public List<NavigationDTO> startProcessing(List<String> data) {
         List<NavigationDTO> navigationData = new ArrayList<>();
 
@@ -67,8 +64,6 @@ public class FileAnalyzer {
             prevNavigationDTO = navigationDTO;
             navigationDTO = new NavigationDTO();
         }
-        list = navigationData;
-        //TODO класс не должен хранить данные
         return navigationData;
     }
 
@@ -81,7 +76,4 @@ public class FileAnalyzer {
         return level;
     }
 
-    public List<NavigationDTO> getData() {
-        return list;
-    }
 }

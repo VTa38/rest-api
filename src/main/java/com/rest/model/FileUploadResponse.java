@@ -2,13 +2,15 @@ package com.rest.model;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FileUploadResponse {
     // Содержит информацию о входном файле: имя, размер, ссылка на получение стрктуры файла
 
     private String fileName;
     private long fileSize;
-    private String structureURL;
+    private List<NavigationDTO> structure;
 
     public String getFileName() {
         return fileName;
@@ -26,11 +28,11 @@ public class FileUploadResponse {
         this.fileSize = fileSize;
     }
 
-    public String getStructureURL() {
-        return structureURL;
+    public List<NavigationDTO> getStructure() {
+        return structure;
     }
 
-    public void setStructureURL(String structureURL) {
-        this.structureURL = structureURL;
+    public void setStructure(List<NavigationDTO> structure) {
+        this.structure = structure;
     }
 }

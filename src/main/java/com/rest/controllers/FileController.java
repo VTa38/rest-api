@@ -8,7 +8,6 @@ import com.rest.model.FileUploadResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,14 +25,7 @@ public class FileController {
         this.analyzer = analyzer;
     }
 
-    // Возвращает преобразованную информацию из входного файла
-    @GetMapping("/files")
-    public ResponseEntity getNavigateData() {
-
-        return new ResponseEntity(analyzer.getData(), HttpStatus.OK);
-    }
-
-    // Загрузка файла для анализа и преобразования
+    // Загрузка файла для анализа и преобразования, сразу выводит структуру
     @PostMapping("/files")
     public ResponseEntity loadFile(@RequestPart MultipartFile file) {
 
@@ -41,18 +33,16 @@ public class FileController {
             return new ResponseEntity("Text must have .txt format", HttpStatus.UNSUPPORTED_MEDIA_TYPE);
         }
 
+        FileUploadResponse response = new FileUploadResponse();
+        response.setFileName(file.getOriginalFilename());
+        response.setFileSize(file.getSize());
+
         try {
-            analyzer.startProcessing(parser.readFile(file));
+            response.setStructure(analyzer.startProcessing(parser.readFile(file)));
         } catch (IllegalStructureException e) {
             return new ResponseEntity("Invalid file structure", HttpStatus.BAD_REQUEST);
         }
 
-        FileUploadResponse response = new FileUploadResponse();
-        response.setFileName(file.getOriginalFilename());
-        response.setFileSize(file.getSize());
-        response.setStructureURL("/files/");
-
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
-
 }
