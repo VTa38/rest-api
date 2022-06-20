@@ -1,14 +1,14 @@
-package com.rest.Models;
+package com.rest.model;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class FileUploadResponse {
-    // Содержит информацию о входном файле: имя, размер, ссылка на скачивание преобразованного файла
+    // Содержит информацию о входном файле: имя, размер, ссылка на получение стрктуры файла
 
     private String fileName;
     private long fileSize;
-    private String downloadURL;
+    private String structureURL;
 
     public String getFileName() {
         return fileName;
@@ -26,11 +26,11 @@ public class FileUploadResponse {
         this.fileSize = fileSize;
     }
 
-    public String getDownloadURL() {
-        return downloadURL;
+    public String getStructureURL() {
+        return structureURL;
     }
 
-    public void setDownloadURL(String downloadURL) {
-        this.downloadURL = downloadURL;
+    public void setStructureURL(String structureURL) {
+        this.structureURL = structureURL;
     }
 }

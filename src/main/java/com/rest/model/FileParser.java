@@ -1,6 +1,5 @@
-package com.rest.Models;
+package com.rest.model;
 
-import com.rest.exception.IllegalStructureException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,11 +13,12 @@ import java.util.List;
 @Service
 public class FileParser {
 
-    private List<String> listStr = new ArrayList<>();
-
     public List<String> readFile(MultipartFile file) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))){
-            while (reader.ready()){
+        //Класс, который читает файл и разбивает его на строки
+
+        List<String> listStr = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            while (reader.ready()) {
                 listStr.add(reader.readLine());
             }
         } catch (FileNotFoundException e) {
@@ -27,9 +27,5 @@ public class FileParser {
             e.printStackTrace();
         }
         return listStr;
-    }
-
-    public void clearList(){
-        listStr = new ArrayList<>();
     }
 }
