@@ -16,16 +16,16 @@ public class FileParser {
     public List<String> readFile(MultipartFile file) {
         //Класс, который читает файл и разбивает его на строки
 
-        List<String> listStr = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             while (reader.ready()) {
-                listStr.add(reader.readLine());
+                list.add(reader.readLine());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return listStr;
+        return list;
     }
 }

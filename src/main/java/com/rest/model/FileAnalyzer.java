@@ -57,9 +57,9 @@ public class FileAnalyzer {
                     prevNavigationDTO = prevNavigationDTO.getParent();
                 }
                 navigationDTO.setParent(prevNavigationDTO);
+                navigationDTO.setLine(check);
                 prevNavigationDTO.setNavigation(navigationDTO);
             }
-            navigationDTO.setLine(check);
 
             prevNavigationDTO = navigationDTO;
             navigationDTO = new NavigationDTO();

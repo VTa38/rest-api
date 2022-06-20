@@ -7,11 +7,9 @@ import java.util.List;
 public class NavigationDTO {
     // Класс, хранящий строку, её уровень вложенности и вложенную в него структуру
 
-    // Ссылка на вышестоящую структуру
     private NavigationDTO parent = null;
     private String line;
     private int level;
-
     private List<NavigationDTO> navigation = new ArrayList<>();
 
     public NavigationDTO() {
